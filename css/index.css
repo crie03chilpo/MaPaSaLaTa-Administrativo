@@ -1,0 +1,353 @@
+/* Estilos Generales del Body */
+body {
+    background-color: #fff5e6;
+    font-family: 'Century Gothic', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Superior (Barra Negra) */
+.top-bar {
+    background-color: black;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+
+    position: sticky; 
+    top: 0; 
+    z-index: 1050;
+
+
+}
+
+.top-bar .text-white {
+    color: white !important;
+    text-decoration: none;
+}
+
+/* Navbar Principal y Offcanvas Header/Body */
+.main-navbar {
+    background-color: #ffe7b0 !important;
+
+    font-size: 1rem;
+    /* Asegura que el color de fondo se aplique al Offcanvas */
+    --bs-offcanvas-bg: #ffe7b0; 
+
+    position: sticky; 
+    top: 37px; /* Debe empezar justo debajo de la top-bar. La top-bar tiene aprox 38px de altura */
+    z-index: 1020;     
+}
+
+.main-navbar .navbar-brand img {
+    height: 40px; 
+}
+
+/* ------------------------------------------- */
+/* ESTILOS ESCRITORIO (min-width: 992px) */
+/* ------------------------------------------- */
+@media (min-width: 992px) { 
+    
+    /* Contenedor del menú: Forzamos la horizontalidad y el crecimiento */
+    .nav-desktop-container {
+        display: flex !important; /* Esencial para que los enlaces fluyan horizontalmente */
+        align-items: center; 
+    }
+
+    /* Lista de Navegación: Distribución Uniforme en Desktop */
+    .main-navbar .navbar-nav {
+        display: flex; 
+        width: 100%;
+        justify-content: space-evenly; /* Distribuye el espacio */
+        margin-left: 0 !important;
+        align-items: center;
+        flex-direction: row; /* Asegura la horizontalidad */
+    }
+
+    /* Enlaces de Navegación: Estilos de Altura y Centrado Vertical */
+    .main-navbar .nav-link {
+        color: black !important;
+        font-weight: bold;
+        padding: 0 1rem;
+        line-height: 50px; /* Centra el texto con la altura del Navbar */
+        height: 50px;
+        text-align: center;
+    }
+}
+
+
+/* ------------------------------------------- */
+/* ESTILOS MÓVIL/OFFCANVAS (max-width: 991.98px) */
+/* ------------------------------------------- */
+
+/* Enlaces de Offcanvas: Se apilan verticalmente */
+.offcanvas-body .navbar-nav {
+    flex-direction: column;
+}
+
+.offcanvas-header{
+    margin-bottom: 20px;
+}
+
+.offcanvas-body .nav-link {
+    /* Deshabilitamos los estilos de altura fija de desktop */
+    height: auto;
+    line-height: normal;
+    font-weight: bold; 
+    padding: 0.75rem 1rem; /* Más padding para el tacto móvil */
+    text-align: left; 
+}
+
+/* Hover de las opciones (Aplica a Navlinks en Desktop y Offcanvas) */
+.main-navbar .nav-item .nav-link:hover {
+    background-color: #FFB96D0A; /* Color de fondo con transparencia */
+    border-radius: 5px;
+    /* NUEVA REGLA: Cambiamos el color de la letra al mismo tono naranja (sin transparencia) */
+    color: #CC8A2B !important; 
+}
+
+/* Contenido Principal (Imagen) */
+.content-area {
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.principal-img {
+    width: 100%;
+    height: 400px; 
+    object-fit: contain; /* Asegura que la imagen no se corte */
+    display: block; 
+    margin: 0 auto;
+}
+
+
+
+
+/* ------------------------------------------- */
+/* ESTILO PARA PESTAÑA ACTIVA EN NAVBAR PRINCIPAL */
+/* ------------------------------------------- */
+
+/* Estilo para el enlace activo en la barra de navegación principal (simula un botón) */
+.main-navbar .nav-link.active-page {
+    /* Estilos del botón: fondo, color, negrita */
+    background-color: #ffc132 !important; /* Naranja fuerte de la paleta */
+    color: black !important;
+    font-weight: bold !important;
+    
+    /* Forma y sombra */
+    border-radius: 15px !important;
+    padding: 0.55rem 1rem !important; /* Aumenta el padding para que se vea como botón */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    /* Anula los estilos fijos de desktop que pueden entrar en conflicto */
+    height: auto !important;
+    line-height: normal !important;
+}
+
+/* También ajustamos el hover para que no se vea raro sobre el botón activo */
+.main-navbar .nav-link.active-page:hover {
+    background-color: #e6a75f !important; /* Un naranja un poco más oscuro al pasar el ratón */
+    color: black !important;
+}
+
+.margenfint{
+    margin-bottom: 5px;
+
+}
+
+
+
+.frmgroup{
+    margin-bottom: 30px;
+
+}
+/* Los feedback */
+/* CSS para asegurar que el feedback de Bootstrap empuje el contenido */
+.input-group + .invalid-feedback {
+    display: block !important; /* Asegura que no se oculte por otras reglas */
+    margin-top: 0.95rem; /* Espacio extra para que sea legible */
+}
+
+/* Opcional: Si Bootstrap tiene problemas con 'position: absolute' dentro del input-group */
+.input-group.is-invalid + .invalid-feedback {
+    display: block; /* Forzar visibilidad cuando el input-group está marcado como inválido */
+}
+
+.menosabajoform{
+    margin-bottom: 10px !important;
+}
+
+.form-label{
+    margin-bottom: .2rem;
+
+}
+
+
+
+
+/* TABLAS----------------------------------------------- */
+/* Tabla de adminis */
+/* Reglas para las celdas (th y td) dentro de la tabla */
+.tabla-admins th:nth-child(1), 
+.tabla-admins td:nth-child(1) {
+    /*  Columna 1: Nombre (La más ancha, ya que puede tener nombres largos)  */
+    width: 45%; 
+}
+
+.tabla-admins th:nth-child(2),
+.tabla-admins td:nth-child(2) {
+    /*  Columna 2: Usuario (Ancho fijo, el nombre de usuario tiene un límite natural)  */
+    width: 30%; 
+}
+
+.tabla-admins th:nth-child(3), 
+.tabla-admins td:nth-child(3) {
+    /*  Columna 3: Acciones (Solo necesita espacio para los botones, las 3 columnas deben sumar ~100%)  */
+    width: 25%;
+    text-align: center; /* Centrar los botones para mejor estética */
+}
+
+/* Manejo de texto extra largo (para evitar que rompa el diseño) */
+.tabla-admins td {
+    overflow: hidden;         /* Oculta lo que se desborda */
+    text-overflow: ellipsis;  /* Muestra "..." al final si el texto es muy largo */
+    white-space: nowrap;      /* Evita que el texto se salte de línea */
+}
+
+
+/* Tablas CRIES */
+
+        .tabla-cries th:nth-child(1), .tabla-cries td:nth-child(1) { width: 25%; } /* CCT */
+        .tabla-cries th:nth-child(2), .tabla-cries td:nth-child(2) { width: 20%; } /* Nombre */
+        .tabla-cries th:nth-child(3), .tabla-cries td:nth-child(3) { width: 25%; } /* Ubicación */
+        .tabla-cries th:nth-child(4), .tabla-cries td:nth-child(4) { width: 15%; } /* Director */
+        .tabla-cries th:nth-child(5), .tabla-cries td:nth-child(5) { 
+            width: 15%; /* Acciones */
+            text-align: center; 
+        }
+        .tabla-cries td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+/* Tabla directores */
+.tabla-directores th:nth-child(1), .tabla-directores td:nth-child(1) { 
+    /* Columna 1: Nombre */
+    width: 35%; 
+} 
+.tabla-directores th:nth-child(2), .tabla-directores td:nth-child(2) { 
+    /* Columna 2: Usuario (Unique ID) */
+    width: 25%; 
+} 
+.tabla-directores th:nth-child(3), .tabla-directores td:nth-child(3) { 
+    /* Columna 3: CRIE asociado (Foreign Key) */
+    width: 25%; 
+} 
+.tabla-directores th:nth-child(4), .tabla-directores td:nth-child(4) { 
+    /* Columna 4: Acciones */
+    width: 15%; 
+    text-align: center; 
+}
+.tabla-directores td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* Estilos para la tabla de gestión de Escuelas */
+
+.tabla-escuelas th:nth-child(1), .tabla-escuelas td:nth-child(1) { 
+    /* Columna 1: CCT */
+    width: 10%; 
+} 
+.tabla-escuelas th:nth-child(2), .tabla-escuelas td:nth-child(2) { 
+    /* Columna 2: Nombre */
+    width: 20%; 
+} 
+.tabla-escuelas th:nth-child(3), .tabla-escuelas td:nth-child(3) { 
+    /* Columna 3: Dirección */
+    width: 18%; 
+} 
+.tabla-escuelas th:nth-child(4), .tabla-escuelas td:nth-child(4) { 
+    /* Columna 4: Turno */
+    width: 8%; 
+    text-align: center;
+}
+.tabla-escuelas th:nth-child(5), .tabla-escuelas td:nth-child(5) { 
+    /* Columna 5: CRIE */
+    width: 15%; 
+}
+.tabla-escuelas th:nth-child(6), .tabla-escuelas td:nth-child(6) { 
+    /* Columna 6: Asesor */
+    width: 15%; 
+}
+.tabla-escuelas th:nth-child(7), .tabla-escuelas td:nth-child(7) { 
+    /* Columna 7: Acciones (2 botones) */
+    width: 14%; 
+    text-align: center; 
+}
+
+/* Opcional: Ajuste para botones dentro de Acciones */
+.tabla-escuelas .btn-action {
+    padding: 0.375rem 0.5rem; /* Ajuste el padding si es necesario */
+}
+
+
+/* Ajuste de anchos para la tabla de Asesores */
+
+.tabla-asesores th:nth-child(1), 
+.tabla-asesores td:nth-child(1) { 
+    /* Columna 1: Nombre */
+    width: 35%; 
+} 
+.tabla-asesores th:nth-child(2), 
+.tabla-asesores td:nth-child(2) { 
+    /* Columna 2: Usuario */
+    width: 25%; 
+} 
+.tabla-asesores th:nth-child(3), 
+.tabla-asesores td:nth-child(3) { 
+    /* Columna 3: CRIE asociado */
+    width: 20%; 
+} 
+.tabla-asesores th:nth-child(4), 
+.tabla-asesores td:nth-child(4) { 
+    /* Columna 4: Acciones */
+    width: 20%; 
+    text-align: center; 
+}
+
+
+.padrem{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 1.5rem;
+}
+
+.labels-rad label{
+    font-size: 15px;
+}
+
+/* Para los radio button */
+.form-check-input:checked {
+    background-color: #991011;
+    border-color: #991011;
+}
+
+.btndenie{
+    color: white;
+    font-weight: bold;
+}
+
+.magrande{
+    font-size: 17px !important;
+    line-height: 27px;
+}
+

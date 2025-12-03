@@ -1,0 +1,187 @@
+/* ------------------------------------------- */
+/* ESTILOS ESPECÍFICOS DEL FORMULARIO */
+/* ------------------------------------------- */
+
+/* Tarjeta contenedora del formulario (fondo claro, bordes redondeados) */
+.custom-form-card {
+    /* Fondo del color base de tu paleta */
+    background-color: #ffffff; 
+    border-radius: 15px;
+    
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Input y Select (igual que la barra de búsqueda, pero ajustamos un poco) */
+.custom-input {
+    max-width: 75%;
+    border-radius: 10px;
+    border: 1px solid #FFB96D;
+    padding: 0.20rem 1rem;
+    height: auto;
+    box-shadow: none;
+    font-size: 15px;
+    background-color: #fff5e6; /* Aseguramos fondo blanco en el campo */
+}
+
+.custom-input-t2{
+    max-width: 95%;
+    border-radius: 10px;
+    border: 1px solid #FFB96D;
+    padding: 0.20rem 1rem;
+    height: auto;
+    box-shadow: none;
+    font-size: 15px;
+    background-color: #fff5e6;
+}
+
+.form-menor label{
+    font-size: 15px;
+}
+
+.custom-select-input-a {
+    background-color: #fff5e6;
+    border-radius: 15px;
+    font-size: 15px;
+    border: 1px solid #FFB96D; /* Borde naranja de tu paleta */
+    /* padding: 0.55rem 1rem; */
+    height: auto; /* Para que crezca con el padding */
+    box-shadow: none; /* Elimina cualquier sombra por defecto de Bootstrap */
+}
+
+.custom-select-input-a:focus {
+    border-color: #989898;
+    box-shadow: 0 0 0 0.25rem #ffe7b0; /* Sombra suave en el foco */
+}
+
+
+
+
+/* Botón "Generar" */
+.btn-generate {
+    /* Color principal de la paleta */
+    background-color: #ffc132;
+    color: black;
+    font-weight: bold;
+    border: none;
+    /* Ajustamos el border-radius para que se una visualmente con el input */
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0.20rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.btn-quit {
+    /* Color principal de la paleta */
+    background-color: #991011;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    border: none;
+    /* Ajustamos el border-radius para que se una visualmente con el input */
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0.20rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn-generate:hover {
+    background-color: #e6a75f;
+    color: black;
+}
+
+/* ------------------------------------------- */
+/* BOTONES FINALES */
+/* ------------------------------------------- */
+
+/* Botón "Cancelar" (Rojo) */
+.btn-cancel {
+    background-color: #991011; /* Rojo oscuro */
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: -0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-lockdetalle {
+    
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: -0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cancel:hover {
+    background-color: #7a0c0e; /* Rojo más oscuro en hover */
+    color: white;
+}
+
+/* Botón "Aceptar" (Naranja) */
+.btn-accept {
+    background-color: #ffc132; /* Naranja fuerte */
+    color: black;
+    font-weight: bold;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: -0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-accept:hover {
+    background-color: #e6a75f; /* Naranja más oscuro en hover */
+    color: black;
+}
+
+.margmenor{
+    margin-top: -7%;
+
+}
+
+.marg{
+    margin-top: -9% !important;
+}
+
+/* Esto está pendiente por si queremos reducir */
+.form-menor div input{
+    margin-bottom: -3%;
+
+}
+
+.form-menor div select{
+    margin-bottom: -3%;
+
+}
+
+.form-menor div button{
+    margin-bottom: -3%;
+
+}
+
+.form-menor{
+    margin-top: -2%;
+
+}
+
+
+.menorpadding{
+    padding-bottom: 0px !important;
+    
+
+}
+
+.menormarginabajo{
+    margin-bottom: -40px !important;
+
+}

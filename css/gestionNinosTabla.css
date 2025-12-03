@@ -1,0 +1,38 @@
+/* css/gestionNinosTabla.css */
+
+/* Aplica el ancho a la tabla de Niños */
+.tabla-ninos th:nth-child(1), .tabla-ninos td:nth-child(1) { 
+    /* Columna 1: CURP (Dato largo, le damos un buen espacio) */
+    width: 25%; 
+} 
+.tabla-ninos th:nth-child(2), .tabla-ninos td:nth-child(2) { 
+    /* Columna 2: Nombre Completo */
+    width: 20%; 
+} 
+.tabla-ninos th:nth-child(3), .tabla-ninos td:nth-child(3) { 
+    /* Columna 3: Escuela */
+    width: 23%; 
+    text-align: center;
+} 
+.tabla-ninos th:nth-child(4), .tabla-ninos td:nth-child(4) { 
+    /* Columna 4: Grado y Grupo (Dato corto) */
+    width: 17%; 
+    text-align: center;
+    
+}
+.tabla-ninos th:nth-child(5), .tabla-ninos td:nth-child(5) { 
+    /* Columna 5: Acciones */
+    width: 15%; 
+   
+}
+/* Estilo para manejar textos largos en las celdas */
+
+
+
+.notanpeque{
+    max-width: 80% !important;
+}
+
+/* .gestNinos .filter-group{
+    margin-bottom: 0.4rem !important;
+} */

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPaSaLaTa - Detalle de Niño</title> <link rel="icon" type="image/png" href="/img/crielogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contentindex.css">
+    <link rel="stylesheet" href="css/adminAdministradores.css">
+    <link rel="stylesheet" href="css/cssFormAdmin.css">
+    <link rel="stylesheet" href="css/gestionNinosComplejo.css">
+    <link rel="stylesheet" href="css/detalleNinocss.css">
+</head>
+<body>
+
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; margin-top: 130px;" id="toastContainer">
+    </div> 
+
+    <main class="content-area-gestion container py-4">
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9"> 
+                
+                <h4 id="ninoDetailTitle" class="text-center mb-5 fw-bold" style="color: #991011; margin-top:-10px;">Cargando detalles...</h4>
+
+                <div class="custom-card padrem mb-4 detalle-form-container custom-form-card menospaddabajo-2 menostop">
+                    
+                    <form id="detalleNinoForm"> 
+                        <div class="row nombre-row">
+                            <div class="col-md-4">
+                                <div class="input-group-detalle">
+                                    <label for="nombre" class="form-label">Nombre(s)</label>
+                                    <input type="text" id="nombre" class="form-control custom-input-sinrestri" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-detalle">
+                                    <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+                                    <input type="text" id="apellidoPaterno" class="form-control custom-input-sinrestri" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-detalle">
+                                    <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+                                    <input type="text" id="apellidoMaterno" class="form-control custom-input-sinrestri" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group-detalle">
+                                    <label for="curp" class="form-label">CURP</label>
+                                    <input type="text" id="curp" class="form-control custom-input" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group-detalle">
+                                    <label for="crieNombre" class="form-label">CRIE</label>
+                                    <input type="text" id="crieNombre" class="form-control custom-input" value="Cargando..." readonly> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row grado-grupo-row align-items-end menorbottom">
+                            <div class="col-md-8">
+                                <div class="input-group-detalle">
+                                    <label for="escuelaNombre" class="form-label">Escuela:</label>
+                                    <input type="text" id="escuelaNombre" class="form-control custom-input-sinrestri" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group-detalle">
+                                    <label for="gradoNumero" class="form-label">Grado</label>
+                                    <input type="text" id="gradoNumero" class="form-control custom-input-sinrestri text-center" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group-detalle">
+                                    <label for="grupoNombre" class="form-label">Grupo</label>
+                                    <input type="text" id="grupoNombre" class="form-control custom-input-sinrestri text-center" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row d-none">
+                            <div class="col-md-6">
+                                <div class="input-group-detalle">
+                                    <label for="usuario" class="form-label">Usuario:</label>
+                                    <input type="text" id="usuario" class="form-control custom-input-sinrestri" value="Cargando..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group-detalle">
+                                    <label for="contrasena" class="form-label">Contraseña</label>
+                                    <input type="text" id="contrasena" class="form-control custom-input-sinrestri" value="********" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <a id="btnEditar" href="registroNino.html" class="d-none btn btn-descargar-informe me-3" style="background-color: #FFC107; color: #991011;">
+                                    <i class="fas fa-edit me-2"></i>Editar Datos del Niño
+                                </a>
+                                <button type="button" class="d-none btn btn-descargar-informe" id="btnDescargarInformePrincipal">
+                                    <i class="fas fa-download me-2"></i>Descargar Informe Completo
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="idNinoOculto" value="">
+                    </form>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5 menostop">
+            <div class="col-12 col-lg-12">
+                <div class="custom-card p-5 custom-form-card">
+                    <h4 class="text-center mb-3 fw-bold" style="color: #991011; margin-top:-3%;">Informe de Sesiones</h4>
+
+                    <div class="margen-izquierdo">
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center flex-wrap flex-md-nowrap"> 
+                                
+                                <label class="form-label fw-bold me-3 mb-0 text-nowrap" style="min-width: fit-content;">Filtrar por fecha:</label>
+                                
+                                <div class="me-3 flex-grow-1" style="min-width: 130px; max-width: 250px;">
+                                    <input type="date" class="form-control custom-input-sinrestri" id="fechaInicio">
+                                </div>
+                                
+                                <div class="d-flex align-items-center flex-grow-1 d-none" id="divRangoFinContainer"> 
+                                        
+                                        <div class="col-auto text-center me-3">
+                                            <span class="fw-bold">al</span>
+                                        </div>
+                                        
+                                        <div class="flex-grow-1" style="min-width: 130px; max-width: 250px;">
+                                            <input type="date" class="form-control custom-input-sinrestri" id="fechaFin" disabled>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-12 col-lg-12">
+                                <div class="col-12 col-md-auto">
+                                    <div class="form-check custom-checkbox-container">
+                                        <input class="form-check-input" type="checkbox" id="activarRangoFechas">
+                                        <label class="form-check-label ms-1" for="activarRangoFechas">
+                                            Activar rango de fechas
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mb-2"> 
+                            <label class="form-label fw-bold me-3 mb-0">Número de sesiones:</label>
+                            <div class="input-group me-2" style="width: 100px;">
+                                <input type="text" id="numSesiones" class="form-control custom-input-sinrestri text-center" value="0" readonly>
+                            </div>
+
+                            <button type="button" class="btn btn-cancel-busca d-none" id="btn-reiniciar-busca">
+                                    Reiniciar
+                            </button>
+                        </div>  
+                    </div>                
+
+                    <div class="table-responsive">
+                        <table class="table custom-table tabla-sesiones-custom">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 10%;">No. Sesión</th>
+                                    <th class="text-center" style="width: 10%;">Día</th>
+                                    <th class="text-center" style="width: 15%;">Mes</th>
+                                    <th class="text-center" style="width: 10%;">Año</th>
+                                    <th class="text-center" style="width: 10%;">Hora</th>
+                                    <th class="text-center" style="width: 20%;">Duración</th>
+                                    <th class="text-center" style="width: 15%;">Actividades completadas</th>
+                                    <th class="text-center" style="width: 10%;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sesionesTablaBody">
+                                <tr>
+                                    <td colspan="8" class="text-center text-muted">Cargando datos de sesiones...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>    
+    </main>  
+
+    <footer class="text-center py-3" style="background-color: #991011; color: #ffffff;">
+        <div class="container">
+            <p class="mb-0 fw-bold">Centro de Recursos e Información para la Integración Educativa</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script type="module" src="js/firebase.js"></script> 
+    <script type="module" src="js/toastFlotante.js"></script> 
+    <script type="module" src="js/logicaDetalleNino.js"></script> 
+
+    <script type="module" src="js/appInitializer.js"></script>
+    <script type="module">
+        import { initializeApp } from './js/appInitializer.js';
+
+        // Módulo principal: 'ninos', Submenú: 'lista'
+        initializeApp('ninos', 'lista');
+    </script>
+
+</body>
+</html>

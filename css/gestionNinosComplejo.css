@@ -1,0 +1,119 @@
+        .filter-group {
+            display: flex;
+            align-items: center; 
+            margin-bottom: 1.5rem;
+            flex-wrap: nowrap;
+        }
+        
+        .filter-group .filter-label {
+            font-weight: bold;
+            flex-shrink: 0;
+            width: 180px; 
+            text-align: right;
+            padding-right: 15px;
+            padding-top: 0.375rem;
+            padding-bottom: 0.375rem;
+        }
+
+        .filter-group .custom-input-select {
+            width: 350px;
+            max-width: 100%;
+        }
+
+        /* Estilos para Grado y Grupo */
+        .grado-grupo-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.0rem;
+        }
+        
+        .grado-grupo-row .filter-label {
+            font-weight: bold;
+            flex-shrink: 0;
+            width: 80px; 
+            text-align: left;
+            padding-right: 10px;
+            padding-top: 0.375rem;
+            padding-bottom: 0.375rem;
+        }
+
+        .grado-grupo-row .custom-input {
+            width: 20%;
+            background-color: white;
+            margin-right: 25px;
+        }
+
+        .fond-blanco{
+            background-color: white;
+
+        }
+
+        .ll{
+            text-align: right !important;
+        }
+
+        .nobot-nino{
+            margin-bottom: -3%;
+            margin-top: -2% !important;
+        }
+
+        .grande-busqueda{
+            width: 100%;
+
+        }
+        
+        /* Estilos para la sección Buscar por (Fila inferior) */
+        .search-row-final {
+            display: flex;
+            align-items: center; /* CLAVE para alinear verticalmente todos los elementos */
+            margin-top: 1rem;
+        }
+
+        .search-row-final .filter-label {
+            font-weight: bold;
+            flex-shrink: 0;
+            width: 180px; 
+            text-align: left;
+            padding-right: 15px;
+            padding-top: 0.375rem;
+            padding-bottom: 0.375rem;
+        }
+
+        .search-row-final .search-select-container {
+            
+            /* AJUSTE: Más ancho y menos margen */
+            flex-shrink: 0;
+            width: 30%; /* Ancho ajustado para que quede más cerca del input */
+            margin-right: 5px; 
+        }
+
+        .search-row-final .search-input-container {
+            /* AJUSTE: Menos margen */
+            flex-grow: 1; 
+            margin-right: -5% !important; /* Menos espacio antes del botón */
+        }
+
+        .search-input-container input {
+            background-color: white;
+
+        }
+
+        .search-select-container select {
+            background-color: white;
+
+        }        
+
+        /* Sobreescribe el estilo del botón buscar */
+        .btn-buscar-ver2 {
+            /* AJUSTE: El botón ahora se alinea correctamente gracias al align-items: center;
+               No necesita ajustes de altura si se usa el padding de Bootstrap estándar */
+            background-color: #F8B43F !important;
+            border-color: #F8B43F !important;
+            color: #212529;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+#formFiltrosBusqueda .filter-group{
+    margin-bottom: 0.75rem !important;
+}        

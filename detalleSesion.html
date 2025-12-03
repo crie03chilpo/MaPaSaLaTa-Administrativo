@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPaSaLaTa - Detalle de Sesión</title> <link rel="icon" type="image/png" href="/img/crielogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contentindex.css">
+    <link rel="stylesheet" href="css/adminAdministradores.css">
+    <link rel="stylesheet" href="css/cssFormAdmin.css">
+    <link rel="stylesheet" href="css/gestionNinosComplejo.css">
+    <link rel="stylesheet" href="css/detalleNinocss.css">
+</head>
+<body>
+
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; margin-top: 130px;" id="toastContainer">
+    </div> 
+
+    <main class="content-area-gestion container py-5">
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10"> 
+                
+                <h4 id="sesionDetailTitle" class="text-center mb-5 fw-bold" style="color: #991011; margin-top:-4%;">Detalles de la sesión</h4>
+
+                <div class="custom-card p-4 mb-4 detalle-form-container custom-form-card menostop">
+                    
+                    <div class="row mb-3 align-items-end" style="margin-top:-10px;"> 
+                        
+                        <div class="col-12 col-md-5 d-flex">
+                            
+                            <div class="col-6 me-3"> 
+                                <label class="form-label fw-bold mb-1">Número de sesión</label>
+                                <input type="text" class="form-control custom-input-sinrestri text-center" id="inputNumSesion" value="Cargando..." readonly>
+                            </div>
+                            
+                            <div class="col-6">
+                                <label class="form-label fw-bold mb-1">Día</label>
+                                <input type="text" class="form-control custom-input-sinrestri text-center" id="inputDia" value="Cargando..." readonly>
+                            </div>
+                            
+                        </div>
+                        <div class="col-12 col-md-1 d-flex"></div>
+                        
+                        <div class="col-12 col-md-5 d-flex">
+                            
+                            <div class="col-md-8 me-3"> 
+                                <label class="form-label fw-bold mb-1">Mes</label>
+                                <input type="text" class="form-control custom-input-sinrestri text-center" id="inputMes" value="Cargando..." readonly>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold mb-1">Año</label>
+                                <input type="text" class="form-control custom-input-sinrestri text-center" id="inputAnio" value="Cargando..." readonly>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row align-items-center justify-content-between g-3">
+                        
+                        <div class="col-12 col-md-6">
+                            <label class="form-label fw-bold mb-1">Duración</label>
+                            <input type="text" class="form-control custom-input-sinrestri" id="inputDuracion" value="Cargando..." readonly>
+                        </div>
+                        
+                        <div class="col-12 col-md-6">
+                            <label class="form-label fw-bold mb-1">Tasa de aciertos</label>
+                            <input type="text" class="form-control custom-input-sinrestri text-center" id="inputTasaAciertos" value="Cargando..." readonly>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-3" >
+                        <div class="col-12 d-flex justify-content-end" style="margin-bottom: -10px;">
+                            <button type="button" class="btn btn-cancel me-3" id="btnVolverNino">
+                                <!-- <i class="fas fa-arrow-left me-2"></i> -->
+                                Volver a Niño
+                            </button>
+                            <button type="button" class="d-none btn btn-descargar-informe" id="btnDescargarInformeSesion">
+                                <!-- <i class="fas fa-download me-2"></i> -->
+                                Descargar Informe de Sesión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="fw-bold mb-2" style="color: #000000;">Actividades completadas</h4>
+                
+                <div class="custom-card p-2 custom-form-card">
+                    <div class="table-responsive">
+                        <table class="table custom-table tabla-actividades-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="fw-bold text-center">Nivel</th>
+                                    <th scope="col" class="fw-bold text-center">Nombre del nivel</th>
+                                    <th scope="col" class="fw-bold text-center">Plantilla</th>
+                                    <th scope="col" class="fw-bold text-center">Número de errores</th>
+                                    <th scope="col" class="fw-bold text-center">Duración</th>
+                                    <th scope="col" class="fw-bold text-center">Sección</th>
+                                </tr>
+                            </thead>
+                            <tbody id="actividadesTablaBody">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">Cargando actividades...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--  -->
+
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-3" style="background-color: #991011; color: #ffffff;">
+        <div class="container">
+            <p class="mb-0 fw-bold">Centro de Recursos e Información para la Integración Educativa</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
+    <script type="module" src="js/firebase.js"></script> 
+    <script type="module" src="js/toastFlotante.js"></script> 
+    <script type="module" src="js/logicaDetalleSesion.js"></script> 
+
+    <script type="module" src="js/appInitializer.js"></script>
+    <script type="module">
+        import { initializeApp } from './js/appInitializer.js';
+
+        // Módulo principal: 'ninos', Submenú: 'lista'
+        initializeApp('ninos', 'detalle');
+    </script>    
+</body>
+</html>

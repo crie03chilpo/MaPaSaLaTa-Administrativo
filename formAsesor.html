@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPaSaLaTa - Gestión de Asesores</title> <link rel="icon" type="image/png" href="/img/crielogo.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contentindex.css">
+    <link rel="stylesheet" href="css/adminAdministradores.css"> 
+    <link rel="stylesheet" href="css/cssFormAdmin.css">
+</head>
+<body>
+
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; margin-top: 130px;" id="toastContainer">
+    </div> 
+
+    <main class="content-area-gestion container py-2">
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                
+                <div class="card custom-form-card p-4" >
+                    
+                    <h4 class="text-center mb-3 fw-bold" style="color: #991011; margin-top:-15px" id="formTitle">Agregando Asesor</h4>
+                    
+                    <form id="asesorForm" class="form-menor" autocomplete="off">
+                        
+                        <div class="mb-4 menosabajoform">
+                            <label for="asesorName" class="form-label fw-bold">Nombre del Asesor</label>
+                            <div class="input-group frmgroup">
+                                <input type="text" class="form-control custom-input" id="asesorName" placeholder="Ingrese el nombre" required>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-4 menosabajoform">
+                            <label for="crieAsociado" class="form-label fw-bold">CRIE al que pertenece</label>
+                            <div class="input-group frmgroup">
+                                <select class="form-select custom-input" id="crieAsociado" aria-label="Seleccionar CRIE">
+                                    <option value="" selected disabled>Seleccione un CRIE...</option>
+                                    </select>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        
+                        <div class="mb-4 menosabajoform">
+                            <label for="userName" class="form-label fw-bold">Nombre de usuario</label>
+                            <div class="input-group frmgroup">
+                                <input style="max-width: 55%;" type="text" class="form-control custom-input" id="userName" placeholder="Cree un usuario" required>
+                                <button class="btn btn-generate" type="button" id="btnGenerarUsuario">Generar</button>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-4 menosabajoform">
+                            <label for="password" class="form-label fw-bold">Contraseña</label>
+                            <div class="input-group frmgroup">
+                                <input style="max-width: 55%;" type="text" class="form-control custom-input" id="password" placeholder="Establezca una contraseña" required>
+                                <button class="btn btn-generate btn-generate-password" type="button" id="btnGenerarPassword">Generar</button>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-4 menosabajoform">
+                            <label for="confirmPassword" class="form-label fw-bold">Confirmar Contraseña</label>
+                            <div class="input-group frmgroup">
+                                <input type="text" class="form-control custom-input" id="confirmPassword" placeholder="Confirmar Contraseña" required>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        
+                      
+                        <div class="d-flex justify-content-center pt-3" style="margin-top: -15px;">
+                            <button class="btn btn-cancel me-4" type="button" id="btnCancelar">Cancelar</button>
+                            <button class="btn btn-accept" type="submit" id="btnAceptar">Guardar y continuar</button>
+                        </div>
+
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </main> 
+    
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script type="module" src="js/firebase.js"></script> 
+    <script type="module" src="js/toastFlotante.js"></script> 
+    <script type="module" src="js/logicaFormAsesor.js"></script> 
+
+
+    <script type="module" src="js/appInitializer.js"></script>
+    <script type="module">
+        import { initializeApp } from './js/appInitializer.js';
+
+        // Módulo principal: 'ninos', Submenú: 'lista'
+        initializeApp('asesores', 'agregar');
+    </script>      
+</body>
+</html>

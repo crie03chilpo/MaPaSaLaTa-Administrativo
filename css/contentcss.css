@@ -1,0 +1,29 @@
+.content-section {
+    background-color: #fff; /* Fondo blanco para las secciones de contenido */
+    padding-bottom: 50px;
+}
+
+/* Estilo de Tarjetas Personalizadas (Para bordes redondeados) */
+.custom-card {
+    border: 1px solid #FFB96D; /* Borde del color de la paleta */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    background-color: #fff5e6; /* Fondo ligero para la tarjeta */
+}
+
+.custom-card .card-title {
+    color: black;
+}
+
+/* Estilos para el Carrusel Vertical */
+.carousel-img-vertical {
+    /* Si las imágenes son más altas que anchas (verticales), las centramos y ajustamos */
+    object-fit: contain; /* Asegura que la imagen completa se vea */
+    max-height: 100%;
+    width: auto;
+    margin: 0 auto;
+}
+
+#appCarousel {
+    min-height: 400px; /* Altura mínima para que el carrusel se vea bien */
+}

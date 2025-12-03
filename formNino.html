@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPaSaLaTa - Administración</title> <link rel="icon" type="image/png" href="/img/crielogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contentindex.css">
+    <link rel="stylesheet" href="css/adminAdministradores.css">
+    <link rel="stylesheet" href="css/cssFormAdmin.css">
+    <link rel="stylesheet" href="css/gestionNinosComplejo.css">
+    <link rel="stylesheet" href="css/detalleNinocss.css">
+</head>
+<body>
+
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; margin-top: 130px;" id="toastContainer">
+    </div> 
+
+    <main class="content-area-gestion container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9"> 
+                <div class="custom-card padrem mb-5 detalle-form-container custom-form-card menostop">
+
+                    <h4 id="formTitle" class="text-center mb-2 fw-bold" style="color: #991011; margin-top:-3%;">Cargando... espere por favor</h4>
+
+                    <form id="ninoForm"  novalidate autocomplete="off">
+                        
+                        <div class="row nombre-row">
+                            <div class="col-md-4">
+                                <div class="input-group-detalle">
+                                    <label for="nombre" class="form-label fw-bold">Nombre(s)</label>
+                                    <input type="text" id="nombre" class="form-control custom-input-sinrestri" value="Cargando..." required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-detalle">
+                                    <label for="apellidoPaterno" class="form-label fw-bold">Apellido Paterno</label>
+                                    <input type="text" id="apellidoPaterno" class="form-control custom-input-sinrestri" value="Cargando..." required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-detalle">
+                                    <label for="apellidoMaterno" class="form-label fw-bold">Apellido Materno</label>
+                                    <input type="text" id="apellidoMaterno" class="form-control custom-input-sinrestri" value="Cargando...">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group-detalle">
+                                    <label for="curp" class="form-label fw-bold">CURP</label>
+                                    <input type="text" id="curp" class="form-control custom-input" value="Cargando..." required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group-detalle">
+                                    <label for="crie" class="form-label fw-bold">CRIE</label>
+                                    <select id="crie" class="form-select custom-input" required>
+                                        <option value="" selected disabled>Cargando...</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row grado-grupo-row align-items-end menorbottom">
+                            <div class="col-md-8">
+                                <div class="input-group-detalle">
+                                    <label for="escuela" class="form-label fw-bold">Escuela:</label>
+                                    <select id="escuela" class="form-select custom-input-sinrestri" required disabled>
+                                        <option value="" selected disabled>Cargando...</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group-detalle">
+                                    <label for="grado" class="form-label fw-bold">Grado</label>
+                                    <select id="grado" class="form-select custom-input-sinrestri text-center" required>
+                                        <option value="" selected disabled>1</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group-detalle">
+                                    <label for="grupo" class="form-label fw-bold">Grupo</label>
+                                    <select id="grupo" class="form-select custom-input-sinrestri text-center" required>
+                                        <option value="" selected disabled>A</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group-detalle">
+                                    <label for="usuario" class="form-label fw-bold">Usuario (CURP)</label>
+                                    <input type="text" id="usuario" class="form-control custom-input-sinrestri" value="" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group-detalle">
+                                    <label for="contrasena" class="form-label fw-bold">Contraseña</label>
+                                    <!-- <input type="text" id="contrasena" class="form-control custom-input-sinrestri" required> -->
+                                    
+
+                                    <div class="input-group frmgroup">
+                                        <input style="max-width: 65%;" type="text" class="form-control custom-input-sinrestri" id="contrasena" placeholder="Establezca una contraseña" required>
+                                        <button class="btn btn-generate btn-generate-password" type="button" id="btnGenerarPassword">Generar</button>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="idNino" value="">
+                        <input type="hidden" id="idUsuario" value="">
+
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-center pt-3 margmenor">
+                                    <button class="btn btn-cancel me-4" type="button" id="btnCancelar" onclick="window.location.href='gestionNinos.html'" style="background-color: #991011; color: white;">Cancelar</button>
+                                    <button class="btn btn-accept" type="submit" id="btnAceptar" style="background-color: #FFC107;">Actualizar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    
+                </div>
+                
+            </div>
+        </div>    
+    </main>    
+
+
+    <footer class="text-center py-3" style="background-color: #991011; color: #ffffff;">
+        <div class="container">
+            <p class="mb-0 fw-bold">Centro de Recursos e Información para la Integración Educativa</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script type="module" src="js/firebase.js"></script> 
+    <script type="module" src="js/toastFlotante.js"></script> 
+    <script type="module" src="js/formNino.js"></script>      
+    <script type="module" src="js/logicaFormNino.js"></script>
+
+
+    <script type="module" src="js/appInitializer.js"></script>
+    <script type="module">
+        import { initializeApp } from './js/appInitializer.js';
+
+        // Módulo principal: 'ninos', Submenú: 'lista'
+        initializeApp('ninos', 'editar');
+    </script>   
+    
+</body>
+</html>

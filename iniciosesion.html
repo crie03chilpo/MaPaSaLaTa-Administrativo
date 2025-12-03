@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPaSaLaTa - Inicio de Sesión</title> <link rel="icon" type="image/png" href="/img/crielogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contentindex.css">
+    <link rel="stylesheet" href="css/adminAdministradores.css">
+    <link rel="stylesheet" href="css/cssFormAdmin.css">
+    <link rel="stylesheet" href="css/gestionNinosComplejo.css">
+    <link rel="stylesheet" href="css/detalleNinocss.css">
+
+    <link rel="stylesheet" href="css/iniciosesion.css"> 
+</head>
+
+<body>
+    <div class="login-container d-flex justify-content-center align-items-center vh-100">
+        <div class="container">
+            <div class="row login-row mx-auto custom-shadow">
+                
+                <div class="col-lg-6 left-column d-flex align-items-center justify-content-center text-center p-2">
+                    <div class="content-wrapper">
+                        <p class="display-6 fw-bold text-center" style="color: #991011; margin-left: 20px;">
+                            Por favor, ingresa tus credenciales de acceso para comenzar
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 right-column d-flex flex-column align-items-center justify-content-center p-4">
+                    
+                    <!-- <div class="logo-circle-container">
+                        <img src="img/crielogo.png" alt="Logo CRIE" class="logo-login img-fluid">
+                    </div> -->
+
+                    <h2 class="text-center mb-4 fw-bold" style="color: #991011;">Inicia sesión</h2>
+                    
+                    <form id="loginForm" class="w-100 px-md-5 px-sm-3" novalidate>
+                        
+                        <div class="mb-3">
+                            <label for="usuario" class="form-label fw-bold">Usuario</label>
+                            <div class="input-group custom-input-login">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" id="usuario" class="form-control" placeholder="Ingrese su usuario..." required>
+                                <div class="invalid-feedback">Ingrese su usuario.</div>
+                            </div>
+                            <!-- <div class="invalid-feedback"></div> -->
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="contrasena" class="form-label fw-bold">Contraseña</label>
+                            <div class="input-group custom-input-login">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" id="contrasena" class="form-control" placeholder="Ingrese su contraseña..." required>
+                                <div class="invalid-feedback">Ingrese su contraseña.</div>
+                            </div>
+                            <!-- <div class="invalid-feedback"></div> -->
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-login-primary py-2 fw-bold btn-accept" 
+                                >
+                                Iniciar Sesión
+                            </button>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-login-secondary py-2 fw-bold btn-cancel" onclick="window.location.href='index.html'"
+                                >
+                                Volver
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; margin-top: 130px;" id="toastContainer">
+    </div>
+
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script type="module" src="js/firebase.js"></script> 
+    <script type="module" src="js/toastFlotante.js"></script> 
+
+    <script type="module" src="js/logicaLogin.js"></script>
+    </body>
+
+</html>

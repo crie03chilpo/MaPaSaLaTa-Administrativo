@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPaSaLaTa - Gestión de Asesores</title> <link rel="icon" type="image/png" href="/img/crielogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contentindex.css">
+    <link rel="stylesheet" href="css/adminAdministradores.css">
+    <link rel="stylesheet" href="css/cssFormAdmin.css">
+
+</head>
+<body>
+    
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; margin-top: 130px;" id="toastContainer">
+    </div> 
+    
+    <main class="content-area-gestion container py-3">
+        
+        <h4 class="text-center mb-5 fw-bold" style="color: #991011;">Lista de Asesores</h4>
+        
+        <div class="search-bar p-4 mb-2 custom-card conte-busca">
+            <label for="buscarPorAsesor" class="form-label fs-7 fw-bold mb-1">Buscar por:</label>
+            
+            <div class="row align-items-center g-3" style="margin-bottom: -20px !important;">
+                
+                <div class="col-12 col-md-4 col-lg-3">
+                    <select class="form-select custom-select-input" id="campoBusquedaAsesor" aria-label="Buscar por campo">
+                        <option value="nombre">Nombre</option>
+                        <option value="usuario">Usuario</option>
+                        <option value="crie">CRIE asociado</option>
+                    </select>
+                </div>
+                
+                <div class="col-12 col-md-5 col-lg-5">
+                    <input type="text" class="form-control custom-select-input" id="terminoBusquedaAsesor" placeholder="Ingrese el nombre o usuario a buscar..." aria-label="Buscar término" autocomplete="off">
+                </div>
+                
+                <div class="col-12 col-md-3 col-lg-2">
+                    <button type="submit" class="btn w-100 btn-buscar" id="btn-empezar-busca-asesor">Buscar</button>
+                </div>
+                
+                <div class="col-12 col-md-3 col-lg-2">
+                    <button type="button" class="btn w-100 btn-cancel-busca d-none" id="btn-reiniciar-busca-asesor">Reiniciar</button>
+                </div>             
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table custom-table tabla-asesores" id="tablaAsesores"> 
+                <thead>
+                    <tr>
+                        <th scope="col" class="fw-bold">Nombre</th>
+                        <th scope="col" class="fw-bold">Usuario</th>
+                        <th scope="col" class="fw-bold">CRIE asociado</th>
+                        <th scope="col" class="fw-bold">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTablaAsesores"> 
+                    </tbody>
+            </table>
+        </div>
+        <div id="mensajeCarga" class="text-center mt-4">Cargando Asesores...</div>
+        
+    </main>    
+
+    <footer class="text-center py-3" style="background-color: #991011; color: #ffffff;">
+        <div class="container">
+            <p class="mb-0 fw-bold">Centro de Recursos e Información para la Integración Educativa</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js"></script>
+    <script type="module" src="js/firebase.js"></script> 
+    <script type="module" src="js/toastFlotante.js"></script>
+    <script type="module" src="js/gestionAsesores.js"></script> 
+
+
+    <script type="module" src="js/appInitializer.js"></script>
+    <script type="module">
+        import { initializeApp } from './js/appInitializer.js';
+
+        // Módulo principal: 'administradores', Submenú: 'lista'
+        initializeApp('asesores', 'lista');
+    </script>
+
+</body>
+</html>

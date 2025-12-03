@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPaSaLaTa - Formulario CRIE</title> <link rel="icon" type="image/png" href="/img/crielogo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contentindex.css">
+    <link rel="stylesheet" href="css/adminAdministradores.css">
+    <link rel="stylesheet" href="css/cssFormAdmin.css">
+</head>
+<body>
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080; margin-top: 130px;" id="toastContainer">
+    </div> 
+    
+
+    <main class="content-area-gestion container py-2">
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                
+                <div class="card custom-form-card p-4">
+                    
+                    <h4 class="text-center mb-3 fw-bold" style="color: #991011; margin-top:-15px" id="formTitle">Agregando CRIE</h4>
+                    
+                    <form id="crieForm" class="form-menor" autocomplete="off">
+                        
+                        <div class="mb-4 menosabajoform">
+                            <label for="cct" class="form-label fw-bold">CCT</label>
+                            <div class="input-group frmgroup">
+                                <input type="text" class="form-control custom-input" id="cct" placeholder="Ingrese el CCT" required>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-4 menosabajoform">
+                            <label for="crieName" class="form-label fw-bold">Nombre del CRIE</label>
+                            <div class="input-group frmgroup">
+                                <input type="text" class="form-control custom-input" id="crieName" placeholder="Ingrese el nombre del CRIE" required>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-5 menosabajoform">
+                            <label for="location" class="form-label fw-bold">Ubicación</label>
+                            <div class="input-group frmgroup">
+                                <input type="text" class="form-control custom-input" id="location" placeholder="Ingrese la ubicación" required>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <!--  -->
+                        <div class="mb-4 menosabajoform " id="directorContainer">
+                            <label for="directorAsociado" class="form-label fw-bold">Director</label>
+                            <div class="input-group frmgroup">
+                                <select style="max-width: 60%;" class="form-select custom-input" id="directorAsociado" aria-label="Seleccionar Director" >
+                                    <option value="" selected disabled>Seleccione un Director...</option>
+                                </select>
+                                <button class="btn btn-quit" type="button" id="btnQuitarDirector" style="max-width: 20%;">Quitar</button>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <!--  -->
+                        
+                        <br>
+                        <div class="d-flex justify-content-center pt-3 margmenor">
+                            <button class="btn btn-cancel me-4" type="button" id="btn-cancelar">Cancelar</button>
+                            <button class="btn btn-accept" type="submit" id="btn-aceptar">Guardar</button>
+                        </div>
+
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </main>    
+
+
+    <footer class="text-center py-3" style="background-color: #991011; color: #ffffff;">
+        <div class="container">
+            <p class="mb-0 fw-bold">Centro de Recursos e Información para la Integración Educativa</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/13c51e858e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script type="module" src="js/firebase.js"></script> 
+    <script type="module" src="js/toastFlotante.js"></script> 
+    <script type="module" src="js/utilidadesForm.js"></script> 
+    <script type="module" src="js/formCrie.js"></script> 
+
+
+    <script type="module" src="js/appInitializer.js"></script>
+    <script type="module">
+        import { initializeApp } from './js/appInitializer.js';
+
+        // Módulo principal: 'ninos', Submenú: 'lista'
+        initializeApp('crie', 'agregar');
+    </script>         
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+/*
+ * Archivo: css/gestion.css
+ * Estilos específicos para las páginas de gestión (Administradores, CRIE, etc.)
+ */
+
+/* ------------------------------------------- */
+/* SUB-NAVBAR DE GESTIÓN (Barra Terciaria) */
+/* ------------------------------------------- */
+
+/* La clase sticky-top de Bootstrap ya hace que sea fixed. 
+ * Solo necesitamos ajustar su posición y darle color al fondo.
+ */
+.sub-navbar {
+    z-index: 1010; /* Menor que el navbar principal (1020) */
+    /* El color de fondo se aplica directamente en el HTML con bg-white */
+    display: flex;
+    align-items: center;
+    
+    /* Nota importante: La posición sticky en esta barra solo funcionará
+     * correctamente si el navbar principal tiene una altura fija.
+     * En el HTML usamos la clase `sticky-top`.
+     */
+     max-height: 60px;
+     
+}
+
+/* Estilo para los botones de gestión (Lista y Agregar) */
+.btn-gestion {
+    /* Color de fondo del botón basado en tu paleta (Naranja claro) */
+    
+    background-color: #f4d67c; 
+    color: black;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 7px 30px; /* Tamaño del botón */
+    border: none;
+    border-radius: 10px; /* Bordes suaves */
+    transition: background-color 0.2s;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-gestion:hover {
+    background-color: #FFB96D; /* Naranja más fuerte al pasar el ratón */
+    color: black;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para marcar el enlace activo en el menú principal */
+.active-link {
+    background-color: #FFB96D !important;
+    border-radius: 5px;
+}
+
+
+/* ------------------------------------------- */
+/* ESTILOS PARA LA BARRA DE BÚSQUEDA */
+/* ------------------------------------------- */
+
+.conte-busca{
+    /* margin-bottom: 10px !important; */
+    padding: 20px !important;
+}
+
+.search-bar {
+    margin-top: -5%;
+    
+}
+
+/* Estilo para los campos Select e Input (Borde redondeado y color de la paleta) */
+.custom-select-input {
+    font-size: 15px;
+    border-radius: 15px;
+    border: 1px solid #FFB96D; /* Borde naranja de tu paleta */
+    /* padding: 0.55rem 1rem; */
+    height: auto; /* Para que crezca con el padding */
+    box-shadow: none; /* Elimina cualquier sombra por defecto de Bootstrap */
+}
+
+.custom-select-input:focus {
+    border-color: #989898;
+    box-shadow: 0 0 0 0.25rem #ffe7b0; /* Sombra suave en el foco */
+}
+
+/* Estilo para el botón Buscar (Naranja fuerte) */
+.btn-buscar {
+    background-color: #ffc132; /* Naranja fuerte de tu paleta */
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px; /* Bordes suaves */
+    /* padding: 0.55rem 0.8rem; */
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+    max-width: 80%;
+}
+.btn-cancel-busca{
+    background-color: #991011;; /* Naranja fuerte de tu paleta */
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    border: none;
+    border-radius: 15px; /* Bordes suaves */
+    /* padding: 0.55rem 0.8rem; */
+    max-width: 80%;
+    font-size: 15px;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.btn-buscar:hover {
+    background-color: #fdcd5c; /* Ligeramente más oscuro en hover */
+    color: black;
+}
+
+.btn-cancel-busca:hover {
+    background-color: #c01414; /* Ligeramente más oscuro en hover */
+    color: rgb(255, 255, 255);
+}
+
+/* ------------------------------------------- */
+/* ESTILOS PARA LA TABLA DE ADMINISTRADORES */
+/* ------------------------------------------- */
+
+.custom-table {
+    border-collapse: separate; /* CAMBIO: Necesario para que border-radius funcione en la tabla */
+    border-spacing: 0;        /* Para controlar el espacio entre celdas */
+    width: 100%;
+    
+    /* NUEVO: Border Radius a la tabla */
+    border-radius: 15px; 
+    overflow: hidden; /* IMPORTANTE: Asegura que el border-radius se aplique a los contenidos internos */
+    
+    /* OPCIONAL: Fondo de la tabla para dar el efecto de fondo de celda */
+    background-color: #fff5e6; /* Color de tu body/fondo base */
+}
+
+/* Eliminar todos los bordes de Bootstrap por defecto */
+.custom-table,
+.custom-table th, 
+.custom-table td,
+.custom-table thead, 
+.custom-table tbody,
+.custom-table tr {
+    border: none !important;
+    /* NUEVO: Asegura que las celdas no tengan un color de fondo blanco por defecto */
+    background-color: transparent !important; 
+}
+
+/* Aplicar el borde rojo solo en la parte inferior de las celdas (y del thead) */
+/* BUSCA ESTO EN css/gestion.css: */
+.custom-table th,
+.custom-table td {
+    /* CAMBIO: Reducimos el padding de 1.5rem a 1rem para que las filas sean más compactas */
+    padding: 0.45rem 1.5rem; 
+    font-size: 15px;
+    border-bottom: 2px solid #991011 !important; /* Rojo oscuro de tu paleta */
+    
+}
+
+/* Aplicar border-radius solo a las esquinas superiores del encabezado */
+.custom-table thead th:first-child {
+    border-top-left-radius: 15px;
+}
+.custom-table thead th:last-child {
+    border-top-right-radius: 15px;
+}
+
+/* Asegurar que la última fila de la tabla no tenga un borde inferior visible */
+.custom-table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* ------------------------------------------- */
+/* ESTILOS PARA BOTONES DE ACCIÓN (Tabla) */
+/* ------------------------------------------- */
+
+.btn-action {
+    width: 30px; /* Tamaño fijo para que sean redondos */
+    height: 30px;
+    padding: 0;
+    border: none;
+    border-radius: 10px; /* Bordes redondeados como en la imagen */
+    color: white; /* Color del ícono */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 1. Botón de Candado (Rojo) */
+.btn-lock {
+    background-color: #991011; /* Rojo oscuro de tu paleta */
+}
+
+.btn-unlock{
+    background-color: #007317;
+
+}
+
+.btn-unlock:hover{
+    background-color: #00ae23;
+    color: rgb(0, 0, 0) !important;
+
+}
+
+
+/* 2. Botón de Edición (Amarillo/Dorado) */
+.btn-edit {
+    background-color: #FFB96D; /* Naranja/Dorado de tu paleta */
+    color: black; /* El ícono debe ser negro en fondo claro */
+}
+
+/* 3. Botón de Vista (Azul) */
+.btn-view {
+    background-color: #4FB0FF; /* Un azul claro */
+}
+
+.btn-action:hover {
+    filter: brightness(1.1);
+    color: rgb(95, 20, 20); /* Asegura que el ícono sea blanco al pasar el ratón, excepto el amarillo */
+}
+
+.btn-edit:hover {
+    color: black; /* Asegura que el ícono siga siendo negro en el botón amarillo/dorado */
+}
+
+/* ------------------------------------------- */
+/* HOVER DE FILA DE TABLA */
+/* ------------------------------------------- */
+
+.custom-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+    /* Usamos el color de tu Navbar con un poco de opacidad */
+    background-color: #ffe7b080 !important; 
+    cursor: pointer; /* Indica que la fila es interactiva */
+}

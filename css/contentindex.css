@@ -1,0 +1,72 @@
+.content-section {
+    
+    padding-bottom: 50px;
+}
+
+/* Estilo de Tarjetas Personalizadas (Para bordes redondeados) */
+.custom-card {
+    
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    
+}
+
+.custom-card .card-title {
+    color: black;
+}
+
+/* Estilos para el Carrusel Vertical */
+.carousel-img-vertical {
+    object-fit: contain;
+    max-height: 100%;
+    width: auto; /* <--- Esta es la clave para centrar */
+    margin: 0 auto; /* <--- Esta es la clave para centrar */
+}
+
+
+/* ESTILOS ADICIONALES PARA EL CARRUSEL */
+
+/* Hacemos los botones de control (flechas) visibles */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    /* Cambiamos el color de la flecha a blanco (o un color oscuro que contraste) */
+    filter: invert(1) grayscale(100) brightness(1.5); /* Hace la flecha blanca y más brillante */
+}
+
+/* Hacemos los indicadores (puntitos) visibles */
+#appCarousel .carousel-indicators button {
+    background-color: #555; /* Color oscuro para los puntitos (inactivo) */
+    border: 1px solid #555;
+    opacity: 0.5;
+}
+
+#appCarousel .carousel-indicators .active {
+    background-color: #FFB96D; /* Color naranja para el puntito activo */
+    opacity: 1;
+}
+
+/* --- Estilos Añadidos --- */
+
+/* Estilos para los indicadores del segundo carrusel (Trabajo previo) */
+#appCarousel-previo .carousel-indicators button {
+    background-color: #555; /* Color oscuro para los puntitos (inactivo) */
+    border: 1px solid #555;
+    opacity: 0.5;
+}
+
+#appCarousel-previo .carousel-indicators .active {
+    background-color: #FFB96D; /* Color naranja para el puntito activo */
+    opacity: 1;
+}
+
+/* Estilos para los indicadores del tercer carrusel (Trabajo con plantillas) */
+#appCarousel-plantilla .carousel-indicators button {
+    background-color: #555; /* Color oscuro para los puntitos (inactivo) */
+    border: 1px solid #555;
+    opacity: 0.5;
+}
+
+#appCarousel-plantilla .carousel-indicators .active {
+    background-color: #FFB96D; /* Color naranja para el puntito activo */
+    opacity: 1;
+}

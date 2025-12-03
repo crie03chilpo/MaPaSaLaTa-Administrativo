@@ -1,0 +1,27 @@
+@media (max-width: 991.98px) {
+    
+    .sub-navbar {
+        /*
+         * Ajusta este valor de margen negativo. 
+         * Usa 'px' o 'rem' para un control más preciso que el porcentaje, 
+         * ya que el porcentaje es relativo al ancho y no a la altura del elemento anterior.
+         */
+        margin-top: -4% !important; /* Prueba con -15px y ajústalo si es necesario */
+    }
+}
+
+/* ------------------------------------------- */
+/* Corrección para Escritorio (Tu solución actual) */
+/* ------------------------------------------- */
+
+/* Aplica los estilos para dispositivos con un ANCHO MÍNIMO de 992px (Escritorio/Tablet grande) */
+@media (min-width: 992px) {
+    
+    .sub-navbar {
+        /*
+         * Mantenemos tu solución de porcentaje aquí, pero la encerramos en el @media
+         * para que no afecte el cálculo del móvil.
+         */
+        margin-top: -2%; /* Tu corrección de escritorio */
+    }
+}
