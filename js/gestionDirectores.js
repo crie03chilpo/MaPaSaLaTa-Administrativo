@@ -173,7 +173,8 @@ async function obtenerDirectoresConDetalles() {
         listaDirectoresCompleta = listaFinalDirectores;
         
         //Renderiza la lista completa al inicio
-        renderizarTablaDirectores(listaDirectoresCompleta);
+        // renderizarTablaDirectores(listaDirectoresCompleta);
+        filtrarDirectores();
 
     } catch (error) {
         console.error("Error al obtener los datos cruzados de Directores:", error);
@@ -233,7 +234,7 @@ function reiniciarBusqueda() {
     }
     
     //2. Mostrar la lista completa (reiniciar el filtro)
-    renderizarTablaDirectores(listaDirectoresCompleta);
+    filtrarDirectores();
 
     //3. Ocultar el botón Reiniciar
     if (btnReiniciar) {
@@ -252,21 +253,17 @@ function filtrarDirectores() {
     const campo = selectCampo.value; 
     const termino = inputBusqueda.value.toLowerCase().trim();
 
-    //Lógica para mostrar/ocultar el botón
-    if (termino === "") {
-        renderizarTablaDirectores(listaDirectoresCompleta);
-        btnReiniciar.classList.add('d-none'); // Ocultar
-        return;
-    }
-
-    //Si hay término de búsqueda, aseguramos que el botón Reiniciar esté visible
-    btnReiniciar.classList.remove('d-none'); // Mostrar
-
-    //Aplicamos el filtro
+    // El filtro ahora tiene dos capas: Estatus y Búsqueda
     const resultadosFiltrados = listaDirectoresCompleta.filter(director => {
-        let valorCampo;
         
-        //El campo 'crie' debe filtrar sobre el nombre del CRIE, no sobre el idCrie
+        // CAPA 1: Seguridad (Si el status es 0, se oculta siempre)
+        if (director.status === 0) return false;
+
+        // CAPA 2: Si no hay búsqueda, el director pasa (porque su status es 1)
+        if (termino === "") return true;
+
+        // CAPA 3: Si hay búsqueda, filtramos por el campo seleccionado
+        let valorCampo;
         if (campo === 'crie') {
             valorCampo = String(director.nombreCrie).toLowerCase(); 
         } else {
@@ -276,7 +273,14 @@ function filtrarDirectores() {
         return valorCampo.includes(termino);
     });
 
-    //Renderizamos los resultados
+    // Control del botón reiniciar
+    if (termino === "") {
+        btnReiniciar.classList.add('d-none');
+    } else {
+        btnReiniciar.classList.remove('d-none');
+    }
+
+    // Renderizamos solo los que pasaron los filtros
     renderizarTablaDirectores(resultadosFiltrados);
 }
 

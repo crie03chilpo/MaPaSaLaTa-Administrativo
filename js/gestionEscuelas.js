@@ -250,7 +250,7 @@ async function obtenerEscuelasConRelaciones() {
             String(a.nombre).localeCompare(String(b.nombre))
         );
         
-        renderizarTablaEscuelas(listaEscuelasCompleta);
+        filtrarEscuelas();
 
     } catch (error) {
         console.error("Error FATAL al obtener los datos de Escuelas:", error);
@@ -325,7 +325,7 @@ function reiniciarBusqueda() {
     }
     
     //4. Mostrar la lista completa (reiniciar el filtro)
-    renderizarTablaEscuelas(listaEscuelasCompleta);
+    filtrarEscuelas();
 }
 
 
@@ -347,15 +347,19 @@ function filtrarEscuelas() {
         }
     }
     
-    let resultadosFiltrados = listaEscuelasCompleta;
-    let hayFiltro = false;
+    const resultadosFiltrados = listaEscuelasCompleta.filter(escuela => {
+        
+        //Seguridad (Solo mostrar activas)
+        if (escuela.status === 0) return false;
 
-    //Aplicar Filtro de Búsqueda por Texto
-    if (termino !== "") {
-        resultadosFiltrados = resultadosFiltrados.filter(escuela => {
+        //Filtro de Turno
+        if (turnoSeleccionado !== 'ambos' && escuela.turno !== turnoSeleccionado) {
+            return false;
+        }
+
+        //Búsqueda por texto
+        if (termino !== "") {
             let valorCampo;
-            
-            //Si el campo es 'crieId', buscamos en el nombre enriquecido
             if (campo === 'crieId') {
                 valorCampo = String(escuela.nombreCrie).toLowerCase();
             } else if (campo === 'nombreAsesor') {
@@ -363,29 +367,20 @@ function filtrarEscuelas() {
             } else {
                 valorCampo = String(escuela[campo]).toLowerCase(); 
             }
-
             return valorCampo.includes(termino);
-        });
-        hayFiltro = true;
-    }
+        }
 
-    //Aplicar Filtro de Turno
-    if (turnoSeleccionado !== 'ambos') {
-        resultadosFiltrados = resultadosFiltrados.filter(escuela => 
-            escuela.turno === turnoSeleccionado
-        );
-        hayFiltro = true;
-    }
+        return true; // Si pasó status y turno, y no hay término de búsqueda
+    });
 
-    //Lógica para mostrar/ocultar el botón Reiniciar
+    // Lógica del botón Reiniciar
+    const hayFiltro = termino !== "" || turnoSeleccionado !== 'ambos';
     if (hayFiltro) {
         btnReiniciar.classList.remove('d-none');
     } else {
-        //Solo mostrar si el término está vacío Y el turno es "ambos"
         btnReiniciar.classList.add('d-none');
     }
 
-    //Renderizamos los resultados
     renderizarTablaEscuelas(resultadosFiltrados);
 }
 
@@ -463,7 +458,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-// 💡 NUEVA FUNCIÓN para ocultar el campo de búsqueda de CRIE
 function ocultarFiltroCRIE() {
     if (esDirector && selectCampo) {
         const opcionCRIE = selectCampo.querySelector('option[value="crieId"]');

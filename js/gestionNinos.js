@@ -394,7 +394,8 @@ async function obtenerNinosConDetalles() {
         renderizarSelectsFiltro(datosRelacionales, idEscuelasAFiltrar); 
         
         // 4. Renderiza la lista
-        renderizarTablaNinos(listaNinosCompleta);
+        //renderizarTablaNinos(listaNinosCompleta);
+        aplicarFiltrosYBusqueda();
 
     } catch (error) {
         console.error("Error al obtener los datos de Niños:", error);
@@ -548,8 +549,8 @@ function reiniciarFiltrosYBusqueda() {
     }
     
     //3. Mostrar la lista completa (reiniciar el filtro)
-    renderizarTablaNinos(listaNinosCompleta);
-
+    //renderizarTablaNinos(listaNinosCompleta);
+    aplicarFiltrosYBusqueda();
     //4. Ocultar el botón Reiniciar
     if (btnReiniciar) {
         btnReiniciar.classList.add('d-none');
@@ -574,6 +575,9 @@ function aplicarFiltrosYBusqueda() {
     // listaNinosCompleta ya está pre-filtrada por rol si corresponde.
     let resultadosFiltrados = listaNinosCompleta.filter(nino => {
         
+        if (nino.status === 0) {
+            return false;
+        }        
         // Filtrar por CRIE (Solo aplica si es Admin, o si Admin filtró por CRIE)
         if (idCRIE && nino.idCrie !== idCRIE) {
             return false;
@@ -645,6 +649,8 @@ function aplicarFiltrosYBusqueda() {
     
     //4. Renderizar los resultados
     renderizarTablaNinos(resultadosFiltrados);
+    
+    
 }
 
 function manejarNotificacionPendiente() {

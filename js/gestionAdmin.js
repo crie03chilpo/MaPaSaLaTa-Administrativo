@@ -134,7 +134,7 @@ async function obtenerAdministradoresConDetalles() {
         listaAdministradoresCompleta = listaFinalAdministradores;
         
         // Renderiza la lista completa al inicio
-        renderizarTablaAdministradores(listaAdministradoresCompleta);
+        filtrarAdministradores();
 
     } catch (error) {
         console.error("Error al obtener los datos cruzados:", error);
@@ -192,7 +192,7 @@ function reiniciarBusqueda() {
     }
     
     //2. Mostrar la lista completa (reiniciar el filtro)
-    renderizarTablaAdministradores(listaAdministradoresCompleta);
+    filtrarAdministradores();
 
     //3. Ocultar el botón Reiniciar
     if (btnReiniciar) {
@@ -203,8 +203,6 @@ function reiniciarBusqueda() {
 
 //2. Para el filtrado
 function filtrarAdministradores() {
-    //Las referencias ya son globales (selectCampo, inputBusqueda)
-
     if (!selectCampo || !inputBusqueda || !btnReiniciar) {
         console.error("Elementos de búsqueda no encontrados.");
         return;
@@ -213,27 +211,30 @@ function filtrarAdministradores() {
     const campo = selectCampo.value; 
     const termino = inputBusqueda.value.toLowerCase().trim();
 
-    //Lógica para mostrar/ocultar el botón
-    if (termino === "") {
-        //Si el campo está vacío, mostramos la lista completa y ocultamos el botón
-        renderizarTablaAdministradores(listaAdministradoresCompleta);
-        btnReiniciar.classList.add('d-none'); // Ocultar
-        return;
-    }
-
-    //Si hay término de búsqueda, aseguramos que el botón Reiniciar esté visible
-    btnReiniciar.classList.remove('d-none'); // Mostrar
-
-    //Aplicamos el filtro
+    //Siempre status !== 0 Y luego el término de búsqueda
     const resultadosFiltrados = listaAdministradoresCompleta.filter(admin => {
+        
+        //1.Si está bloqueado (0), no pasa el filtro
+        if (admin.status === 0) return false;
+
+        //2. Si el buscador está vacío, ya pasó el filtro (porque el status no es 0)
+        if (termino === "") return true;
+
+        //3. Si hay búsqueda, aplicamos el filtro por campo
         const valorCampo = String(admin[campo]).toLowerCase(); 
         return valorCampo.includes(termino);
     });
 
-    //Renderizamos los resultados
+    //Lógica para mostrar/ocultar el botón Reiniciar
+    if (termino === "") {
+        btnReiniciar.classList.add('d-none');
+    } else {
+        btnReiniciar.classList.remove('d-none');
+    }
+
+    //Renderizamos los resultados que pasaron AMBOS filtros
     renderizarTablaAdministradores(resultadosFiltrados);
 }
-
 
 
 

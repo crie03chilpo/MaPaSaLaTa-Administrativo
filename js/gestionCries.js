@@ -156,7 +156,7 @@ async function obtenerCriesConDirector() {
         listaCriesCompleta = listaFinalCries;
         
         //Renderiza la lista, incluso si solo son CRIE sin director
-        renderizarTablaCries(listaCriesCompleta);
+        filtrarCries();
 
     } catch (error) {
         console.error("Error FATAL al obtener los datos de CRIE y Director:", error);
@@ -215,7 +215,7 @@ function reiniciarBusqueda() {
     }
     
     //2. Mostrar la lista completa (reiniciar el filtro)
-    renderizarTablaCries(listaCriesCompleta);
+    filtrarCries();
 
     //3. Ocultar el botón Reiniciar
     if (btnReiniciar) {
@@ -234,20 +234,17 @@ function filtrarCries() {
     const campo = selectCampo.value; 
     const termino = inputBusqueda.value.toLowerCase().trim();
 
-    //Lógica para mostrar/ocultar el botón
-    if (termino === "") {
-        renderizarTablaCries(listaCriesCompleta);
-        btnReiniciar.classList.add('d-none');
-        return;
-    }
-
-    btnReiniciar.classList.remove('d-none');
-
-    //Aplicamos el filtro
+    //Aplicamos el filtro de seguridad + búsqueda
     const resultadosFiltrados = listaCriesCompleta.filter(crie => {
-        let valorCampo;
         
-        //Manejo especial para el campo 'directorNombre'
+        //Si el CRIE está bloqueado (0), no se muestra NUNCA
+        if (crie.status === 0) return false;
+
+        //Si no hay término de búsqueda, pasa el filtro
+        if (termino === "") return true;
+
+        //Si hay búsqueda, comparamos según el campo
+        let valorCampo;
         if (campo === 'director') {
             valorCampo = String(crie.directorNombre).toLowerCase();
         } else {
@@ -257,10 +254,16 @@ function filtrarCries() {
         return valorCampo.includes(termino);
     });
 
-    //Renderizamos los resultados
+    //Control del botón reiniciar
+    if (termino === "") {
+        btnReiniciar.classList.add('d-none');
+    } else {
+        btnReiniciar.classList.remove('d-none');
+    }
+
+    //Renderizamos solo los CRIE activos y que coinciden con la búsqueda
     renderizarTablaCries(resultadosFiltrados);
 }
-
 
 //------------------Otras acciones------------------
 

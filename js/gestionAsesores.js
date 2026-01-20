@@ -243,7 +243,7 @@ async function obtenerAsesoresConDetalles() {
         );
 
         //Renderiza la lista completa al inicio
-        renderizarTablaAsesores(listaAsesoresCompleta);
+        filtrarAsesores();
 
     } catch (error) {
         console.error("Error al obtener los datos cruzados de Asesores:", error);
@@ -312,7 +312,7 @@ function reiniciarBusqueda() {
     }
 
     //2. Mostrar la lista completa (reiniciar el filtro)
-    renderizarTablaAsesores(listaAsesoresCompleta);
+    filtrarAsesores();
 
     //3. Ocultar el botón Reiniciar
     if (btnReiniciar) {
@@ -331,32 +331,34 @@ function filtrarAsesores() {
     const campo = selectCampo.value;
     const termino = inputBusqueda.value.toLowerCase().trim();
 
-    //Lógica para mostrar/ocultar el botón
-    if (termino === "") {
-        renderizarTablaAsesores(listaAsesoresCompleta);
-        btnReiniciar.classList.add('d-none');
-        return;
-    }
-
-    //Si hay término de búsqueda, aseguramos que el botón Reiniciar esté visible
-    btnReiniciar.classList.remove('d-none');
-
-    //Aplicamos el filtro
+    //Aplicamos el filtro de doble capa
     const resultadosFiltrados = listaAsesoresCompleta.filter(asesor => {
-        let valorCampo;
+        
+        //Seguridad (Si el status es 0, no pasa el filtro)
+        if (asesor.status === 0) return false;
 
-        //El campo crie debe filtrar sobre el nombre del CRIE, no sobre el idCrie
+        //Si no hay búsqueda, el asesor pasa (porque ya sabemos que su status es 1)
+        if (termino === "") return true;
+
+        //Filtrado por término de búsqueda
+        let valorCampo;
         if (campo === 'crie') {
             valorCampo = String(asesor.nombreCrie).toLowerCase();
         } else {
-            //Utilizamos el nombre de la propiedad del objeto 'asesor' (nombre o usuario)
             valorCampo = String(asesor[campo]).toLowerCase();
         }
 
         return valorCampo.includes(termino);
     });
 
-    //Renderizamos los resultados
+    //Control visual del botón reiniciar
+    if (termino === "") {
+        btnReiniciar.classList.add('d-none');
+    } else {
+        btnReiniciar.classList.remove('d-none');
+    }
+
+    //Renderizamos los resultados filtrados
     renderizarTablaAsesores(resultadosFiltrados);
 }
 
@@ -393,7 +395,7 @@ async function cambiarEstadoUsuario(idUsuario, currentStatus) {
             listaAsesoresCompleta[indice].status = nuevoStatus;
 
             //Renderiza la tabla con los datos ya actualizados
-            renderizarTablaAsesores(listaAsesoresCompleta);
+            filtrarAsesores();
         } else {
             //Si por alguna razón no lo encontramos, hacemos una recarga completa (caso de emergencia/seguridad)
             //Aunque esto traerá de nuevo el parpadeo de carga
