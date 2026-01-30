@@ -17,7 +17,7 @@ import {
 let idNinoActual = null;
 let idUsuarioActual = null;
 //Variable global para almacenar todas las sesiones cargadas
-let sesionesCompletas = []; 
+let sesionesCompletas = [];
 
 //Elementos del DOM HTML
 const ninoDetailTitle = document.getElementById('ninoDetailTitle');
@@ -35,15 +35,15 @@ const btnEditar = document.getElementById('btnEditar');
 const inputIdNinoOculto = document.getElementById('idNinoOculto');
 
 //Elementos del DOM HTML - Sección de Informes de Sesiones
-const inputFechaInicio = document.getElementById('fechaInicio'); 
+const inputFechaInicio = document.getElementById('fechaInicio');
 //Contenedor para la fecha de fin (necesario para la visibilidad)
-const divRangoFinContainer = document.getElementById('divRangoFinContainer'); 
-const inputFechaFin = document.getElementById('fechaFin'); 
+const divRangoFinContainer = document.getElementById('divRangoFinContainer');
+const inputFechaFin = document.getElementById('fechaFin');
 const checkboxActivarRango = document.getElementById('activarRangoFechas');
 const inputNumSesiones = document.getElementById('numSesiones');
 const sesionesTablaBody = document.getElementById('sesionesTablaBody');
 //Botón Reiniciar con el ID y clase CORRECTOS
-const btnReiniciarFiltros = document.getElementById('btn-reiniciar-busca'); 
+const btnReiniciarFiltros = document.getElementById('btn-reiniciar-busca');
 
 //----------------Funciones, métodos y eventos------------------
 
@@ -64,37 +64,37 @@ function inicializarEventos() {
     //1. Ocultar y deshabilitar inicialmente la fecha de fin
     inputFechaFin.disabled = true;
     if (divRangoFinContainer) {
-        
+
         divRangoFinContainer.classList.add('d-none'); //Hacemos el div contenedor invisible
     }
-    
+
     //2. Botón de Reinicio
     if (btnReiniciarFiltros) {
-        
-        btnReiniciarFiltros.classList.add('d-none'); 
+
+        btnReiniciarFiltros.classList.add('d-none');
         btnReiniciarFiltros.addEventListener('click', reiniciarFiltros);
     }
-    
+
     //3. Evento para activar/desactivar el rango de fechas
     if (checkboxActivarRango) {
         checkboxActivarRango.addEventListener('change', () => {
-            mensajeUnavez=true;
+            mensajeUnavez = true;
             const isChecked = checkboxActivarRango.checked;
             inputFechaFin.disabled = !isChecked;
-            
+
             //Oculta o muestra el campo de fecha de fin
             if (divRangoFinContainer) {
                 if (isChecked) {
-                    
+
                     divRangoFinContainer.classList.remove('d-none');
                 } else {
-                    
+
                     divRangoFinContainer.classList.add('d-none');
                     inputFechaFin.value = '';
                 }
             }
 
-            filtrarSesiones(); 
+            filtrarSesiones();
         });
     }
 
@@ -102,11 +102,11 @@ function inicializarEventos() {
     if (inputFechaInicio) {
         inputFechaInicio.addEventListener('change', () => setTimeout(filtrarSesiones, 50));
     }
-    
+
     //5. Evento de cambio en el selector de fecha de fin
     if (inputFechaFin) {
         inputFechaFin.addEventListener('change', () => {
-             if (checkboxActivarRango.checked) {
+            if (checkboxActivarRango.checked) {
                 setTimeout(filtrarSesiones, 50);
             }
         });
@@ -133,7 +133,7 @@ async function getEntityData(collectionName, id, fieldName, fallback = 'No dispo
 async function cargarDatosNino(idNino) {
     console.log(`Iniciando precarga de datos para Niño ID: ${idNino}...`);
     ninoDetailTitle.textContent = 'Cargando detalles...';
-    
+
     try {
         const ninoRef = doc(db, 'Nino', idNino);
         const docNino = await getDoc(ninoRef);
@@ -144,10 +144,10 @@ async function cargarDatosNino(idNino) {
 
         const ninoData = { id: docNino.id, ...docNino.data() };
         idUsuarioActual = ninoData.idUsuario;
-        
+
         //Asignación al campo oculto
         if (inputIdNinoOculto) {
-            inputIdNinoOculto.value = idNino; 
+            inputIdNinoOculto.value = idNino;
         }
 
         const usuarioRef = doc(db, 'Usuario', idUsuarioActual);
@@ -160,14 +160,14 @@ async function cargarDatosNino(idNino) {
             numGrado,
             nombreGrupo
         ] = await Promise.all([
-            getEntityData('Escuela', ninoData.idEscuela, 'idCrie').then(idCrie => 
+            getEntityData('Escuela', ninoData.idEscuela, 'idCrie').then(idCrie =>
                 getEntityData('Crie', idCrie, 'nombre')
             ),
             getEntityData('Escuela', ninoData.idEscuela, 'nombre'),
             getEntityData('Grado', ninoData.idGrado, 'numGrado'),
             getEntityData('Grupo', ninoData.idGrupo, 'nombreGrupo')
         ]);
-        
+
         //4. Rellenar los campos del detalle (solo lectura)
         ninoDetailTitle.textContent = `Detalles de ${ninoData.nombre || 'el niño'}`;
         inputNombre.value = ninoData.nombre || '';
@@ -179,7 +179,7 @@ async function cargarDatosNino(idNino) {
         inputGradoNumero.value = numGrado;
         inputGrupoNombre.value = nombreGrupo;
         inputUsuario.value = usuarioData.usuario || 'N/A';
-        inputContrasena.value = '********'; 
+        inputContrasena.value = '********';
         btnEditar.href = `registroNino.html?idNino=${idNino}`;
 
     } catch (error) {
@@ -193,7 +193,7 @@ async function cargarDatosNino(idNino) {
 //**********************Lógica de Sesiones y Reportes**********************
 
 function formatDuration(seconds) {
-    
+
     if (typeof seconds !== 'number' || isNaN(seconds) || seconds < 0) {
         return 'N/A';
     }
@@ -212,7 +212,7 @@ async function cargarSesionesNino(idNino) {
     try {
         const q = query(collection(db, 'Sesion'), where('idNino', '==', idNino));
         const snapshotSesiones = await getDocs(q);
-        
+
         if (snapshotSesiones.empty) {
             //Si no hay sesiones en la BD, se muestra el mensaje genérico y se termina
             sesionesTablaBody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No se encontraron sesiones registradas para este niño.</td></tr>';
@@ -221,14 +221,14 @@ async function cargarSesionesNino(idNino) {
         }
 
         sesionesCompletas = snapshotSesiones.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        
+
         //Ordenar sesiones por fecha (de más reciente a más antigua)
         sesionesCompletas.sort((a, b) => {
             const dateA = new Date(`${a.fechaSesion}T${a.horaSesion}`);
             const dateB = new Date(`${b.fechaSesion}T${b.horaSesion}`);
             return dateB - dateA; // Orden descendente
         });
-        
+
         renderizarSelectoresFechas(sesionesCompletas);
 
     } catch (error) {
@@ -239,39 +239,39 @@ async function cargarSesionesNino(idNino) {
 }
 
 //3. Filtra las sesiones mostradas en la tabla basándose en la fecha única o el rango seleccionado
-let mensajeUnavez=true;
+let mensajeUnavez = true;
 function filtrarSesiones(esReinicio = false) {
     const fechaInicioStr = inputFechaInicio.value;
     const fechaFinStr = inputFechaFin.value;
     const isRangoActivo = checkboxActivarRango.checked;
-    
+
     //Paso 1: Mostrar el mensaje de carga
     sesionesTablaBody.innerHTML = '<tr><td colspan="8" class="text-center">Buscando sesiones...</td></tr>';
-    
-    let sesionesPreFiltradas = []; //Lista temporal antes de la consolidación
-    let filtroAplicado = false; 
 
-    
+    let sesionesPreFiltradas = []; //Lista temporal antes de la consolidación
+    let filtroAplicado = false;
+
+
     //Caso 1: Rango de Fechas Activo
     if (isRangoActivo) {
         if (!fechaInicioStr || !fechaFinStr) {
-            if(mensajeUnavez==true){
-                mensajeUnavez=false;
+            if (mensajeUnavez == true) {
+                mensajeUnavez = false;
                 mostrarNotificacion('Por favor, seleccione ambas fechas para el rango.', 'warning');
-                
+
             }
-            
+
             renderizarTablaSesiones([], true, 'Por favor, complete el rango de fechas.'); // Mensaje de advertencia
             filtroAplicado = true;
-            return; 
+            return;
         }
-        
+
         //Validación de Rango
         if (fechaInicioStr > fechaFinStr) {
-            inputFechaFin.value = ''; 
+            inputFechaFin.value = '';
             mostrarNotificacion('Error: La fecha de fin no puede ser anterior a la fecha de inicio.', 'danger');
             filtrarSesiones(true); // Vuelve al estado inicial (filtrar por hoy)
-            return; 
+            return;
         }
 
         //Filtrado por Rango (Usa sesionesCompletas, la lista larga y no consolidada)
@@ -280,13 +280,13 @@ function filtrarSesiones(esReinicio = false) {
             return fechaSesion >= fechaInicioStr && fechaSesion <= fechaFinStr;
         });
         filtroAplicado = true;
-    } 
+    }
     //Caso 2: Búsqueda por Fecha Única (Rango inactivo y fecha de inicio seleccionada)
     else if (fechaInicioStr) {
         sesionesPreFiltradas = sesionesCompletas.filter(sesion => sesion.fechaSesion === fechaInicioStr);
         //Si la fecha es la de hoy, no consideramos que se haya aplicado un filtro externo (es el estado por defecto)
         filtroAplicado = fechaInicioStr !== getTodayDateString();
-    } 
+    }
 
     //Caso 3: Sin fecha de inicio seleccionada (solo ocurre si se borra el campo)
     else {
@@ -313,43 +313,54 @@ function filtrarSesiones(esReinicio = false) {
         const promesa = (async () => {
             const qActividades = query(collection(db, 'InformeActividad'), where('sesionId', '==', sesion.id));
             const snapshotActividades = await getDocs(qActividades);
-            
-            sesion.numActividadesCompletadas = snapshotActividades.docs.length; 
+
+            sesion.numActividadesCompletadas = snapshotActividades.docs.length;
         })();
         promesasActividades.push(promesa);
     }
-    
+
     //Esperamos a que todas las actividades se cuenten
     Promise.all(promesasActividades).then(() => {
-        
+
         //Aplicamos la lógica de priorización sobre la lista pre-ordenada
         for (const sesion of sesionesOrdenadas) {
             const noSesion = sesion.noSesion;
+            const numActividades = sesion.numActividadesCompletadas || 0;
+            const duracion = sesion.duracion || 0;
+
+
+            //Solo pasa si: duracion > 30 seg O tiene actividades (> 0)
+            const esValida = duracion > 30 || numActividades > 0;
+
+            if (!esValida) {
+                console.log(`Sesión ${sesion.id} descartada por baja duración (${duracion}s) y 0 actividades.`);
+                continue; //Saltamos esta sesión, no se procesa ni se muestra
+            }
+
 
             //Si no tiene noSesion, la guardamos aparte y continuamos
             if (!noSesion) {
                 sesionesSinNoSesion.push(sesion);
-                continue; 
+                continue;
             }
-            
-            const numActividades = sesion.numActividadesCompletadas || 0;
+
             const tieneActividad = numActividades >= 1;
 
             if (!sesionesConsolidadasMap.has(noSesion)) {
-                //Si es la primera vez que vemos este noSesion, la guardamos
+                // Si es la primera vez que vemos este noSesion, la guardamos
                 sesionesConsolidadasMap.set(noSesion, sesion);
             } else {
                 const sesionExistente = sesionesConsolidadasMap.get(noSesion);
                 const existenteTieneActividad = sesionExistente.numActividadesCompletadas >= 1;
 
-                //La nueva sesión reemplaza a la existente SÍ Y SOLO SÍ:
-                //a) La nueva tiene actividades (>=1) y la existente no las tiene (0).
+                // La nueva sesión reemplaza a la existente SÍ Y SOLO SÍ:
+                // a) La nueva tiene actividades (>=1) y la existente no las tiene (0).
                 if (tieneActividad && !existenteTieneActividad) {
                     sesionesConsolidadasMap.set(noSesion, sesion);
                 }
             }
         }
-        
+
         //Combinamos las sesiones consolidadas y las sesiones sin noSesion
         let sesionesFiltradas = Array.from(sesionesConsolidadasMap.values()).concat(sesionesSinNoSesion);
 
@@ -357,7 +368,7 @@ function filtrarSesiones(esReinicio = false) {
         sesionesFiltradas.sort((a, b) => {
             const dateA = new Date(`${a.fechaSesion}T${a.horaSesion}`);
             const dateB = new Date(`${b.fechaSesion}T${b.horaSesion}`);
-            return dateB - dateA; 
+            return dateB - dateA;
         });
 
         //Paso 2: Mostrar el botón de Reinicio
@@ -370,7 +381,7 @@ function filtrarSesiones(esReinicio = false) {
                 btnReiniciarFiltros.classList.add('d-none'); //Ocultar botón
             }
         }
-        
+
         //Paso 3: Renderizar los resultados
         let mensajeVacio = "No se encontraron sesiones para los criterios de búsqueda.";
         if (sesionesFiltradas.length === 0 && !filtroAplicado) {
@@ -379,7 +390,7 @@ function filtrarSesiones(esReinicio = false) {
 
         if (sesionesFiltradas.length > 0) {
             //Llamada directa a renderizar después de que la promesa se resuelve
-            renderizarTablaSesiones(sesionesFiltradas, false); 
+            renderizarTablaSesiones(sesionesFiltradas, false);
         } else {
             renderizarTablaSesiones([], true, mensajeVacio);
         }
@@ -395,20 +406,20 @@ function filtrarSesiones(esReinicio = false) {
 function reiniciarFiltros() {
     console.log("Reiniciando filtros al estado 'Hoy'...");
 
-    mensajeUnavez=true;
-    
+    mensajeUnavez = true;
+
     //1. Limpiar campos y deshabilitar/ocultar fecha de fin
     inputFechaFin.value = '';
     checkboxActivarRango.checked = false;
     inputFechaFin.disabled = true;
 
-    if (divRangoFinContainer) { 
+    if (divRangoFinContainer) {
         divRangoFinContainer.classList.add('d-none');
     }
 
     //2. Establecer el valor por defecto en fechaInicio (HOY)
     inputFechaInicio.value = getTodayDateString();
-    
+
     //3. Ocultar el botón de Reinicio
     if (btnReiniciarFiltros) btnReiniciarFiltros.classList.add('d-none');
 
@@ -430,9 +441,9 @@ function renderizarSelectoresFechas(sesiones) {
         filtrarSesiones();
         return;
     }
-    
+
     //Obtener todas las fechas únicas
-    const fechasUnicas = [...new Set(sesiones.map(s => s.fechaSesion))].sort(); 
+    const fechasUnicas = [...new Set(sesiones.map(s => s.fechaSesion))].sort();
 
     const fechaMinima = fechasUnicas[0];
     const fechaMaxima = fechasUnicas[fechasUnicas.length - 1];
@@ -442,10 +453,10 @@ function renderizarSelectoresFechas(sesiones) {
     inputFechaInicio.max = fechaMaxima;
     inputFechaFin.min = fechaMinima;
     inputFechaFin.max = fechaMaxima;
-    
+
     //Por defecto, establecer la fecha de HOY en el date picker de inicio
     inputFechaInicio.value = getTodayDateString();
-    
+
     //Filtrar para mostrar las sesiones de la fecha inicial (HOY)
     filtrarSesiones();
 }
@@ -457,20 +468,20 @@ async function renderizarTablaSesiones(sesiones, isEmpty = false, message = "No 
         inputNumSesiones.value = 0;
         return;
     }
-    
+
     const fragment = document.createDocumentFragment();
     //let contador = 1;
-    
+
     for (const sesion of sesiones) {
         const row = document.createElement('tr');
-        
+
         //NO se consulta Firestore aquí. 
         //Se usa la propiedad 'numActividadesCompletadas' que fue pre-calculada en filtrarSesiones.
-        const numActividadesCompletadas = sesion.numActividadesCompletadas || 0; 
-        
+        const numActividadesCompletadas = sesion.numActividadesCompletadas || 0;
+
         //Formateo de fecha y hora
         const [año, mes, dia] = sesion.fechaSesion.split('-');
-        const hora = sesion.horaSesion.substring(0, 5); 
+        const hora = sesion.horaSesion.substring(0, 5);
         const nombreMes = new Date(`${sesion.fechaSesion}T00:00:00`).toLocaleString('es-ES', { month: 'long' });
 
         row.innerHTML = `
@@ -492,8 +503,8 @@ async function renderizarTablaSesiones(sesiones, isEmpty = false, message = "No 
         `;
         fragment.appendChild(row);
     }
-    
-    sesionesTablaBody.innerHTML = ''; 
+
+    sesionesTablaBody.innerHTML = '';
     sesionesTablaBody.appendChild(fragment);
     inputNumSesiones.value = sesiones.length;
 }
@@ -557,7 +568,7 @@ function aplicarFiltroGuardado() {
         // 2. Configurar Fechas
         inputFechaInicio.value = estadoGuardado.fechaInicio;
         inputFechaFin.value = estadoGuardado.fechaFin;
-        
+
         // 3. Mostrar/Ocultar el div de fecha de fin si es necesario
         if (divRangoFinContainer) {
             if (estadoGuardado.isRangoActivo) {
@@ -568,7 +579,7 @@ function aplicarFiltroGuardado() {
                 inputFechaFin.disabled = true;
             }
         }
-        
+
         // 4. Ejecutar el filtro con el estado recuperado
         filtrarSesiones();
         mostrarNotificacion('Filtros restaurados de la sesión anterior.', 'info');
